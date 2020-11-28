@@ -1,0 +1,3 @@
+Click==7.0
+cycler==0.10.0
+SQLAlchemy==1.2.14
