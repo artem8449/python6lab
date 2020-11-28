@@ -93,16 +93,12 @@
               "rss-feed-link": document.getElementById("rss-feed-link").value
         });
 
-        xhr.open("POST", '/feed', true);
+        xhr.open("POST", '/feed', false);
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-        xhr.onreadystatechange = handleRequestStateChange;
         xhr.send(request);
 
-        function handleRequestStateChange(){
-            alert('TEst')
-            if(xhr.status == 208) {
+        if(xhr.status == 208) {
                 alert("Ресур был добавлен ранее.");
-            }
         }
 
     }
