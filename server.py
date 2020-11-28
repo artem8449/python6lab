@@ -5,7 +5,7 @@ import os
 
 import feedparser
 import flask
-from flask import Flask, jsonify, Response
+from flask import Flask
 from flask import request
 from dateutil import parser
 from flask_sqlalchemy import SQLAlchemy

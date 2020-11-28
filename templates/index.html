@@ -2,15 +2,38 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Yet another awesome RSS reader</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .center-block {
+          display: block;
+          margin-right: auto;
+          margin-left: 500px;
+          margin-top: 3%;
+          width: 4000px;
+        }
+    </style>
+    <title>RSS reader</title>
 </head>
 <body>
 
-<div class="row p-4">
+<div class="row p-4 center-block" >
     <div class="col-sm-4">
+         <form class="form-inline">
+            <div class="form-group mb-2">
+                <label for="rss-feed-link">Add another RSS feed</label>
+            </div>
+            <div class="form-group mb-2 mx-sm-3">
+                <input class="form-control" id="rss-feed-link" name="rss-feed-link"
+                       placeholder="RSS feed link"
+                       required>
+            </div>
+            <button type="submit" class="btn btn-success mb-2" onclick="addRssFeed()">Add</button>
+        </form>
         <h1>Added RSS feeds:</h1>
 
-        <div class="mb-2">
+        <div class="mb-2" style="width: 350px">
 
             {% if feeds|length == 0 %}
                 (list is empty)
@@ -27,24 +50,12 @@
             {% endif %}
         </div>
 
-        <form class="form-inline">
-            <div class="form-group mb-2">
-                <label for="rss-feed-link">Add another RSS feed</label>
-            </div>
-            <div class="form-group mb-2 mx-sm-3">
-                <input class="form-control" id="rss-feed-link" name="rss-feed-link"
-                       placeholder="RSS feed link"
-                       required>
-            </div>
-            <button type="submit" class="btn btn-primary mb-2" onclick="addRssFeed()">Add</button>
-        </form>
-    </div>
 
     <div class="col-sm-8 p-4">
         {% if not data.no_feeds %}
 
-            <h1>{{ data.title }} [{{ info.articles_count }} articles]</h1>
-            <a class="btn btn-primary" href="/feedupdate/{{ data.id }}">Update</a>
+            <h1>{{ data.title }} ({{ info.articles_count }} articles)</h1>
+            <a class="btn btn-warning" href="/feedupdate/{{ data.id }}">Update</a>
             <div class="row mt-2">
                 {% for item in items %}
                     <div class="col-sm-12">
@@ -61,7 +72,7 @@
                 {% endfor %}
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4 text-center" >
                 <nav>
                     <ul class="pagination">
                         <li class="page-item">
@@ -84,6 +95,7 @@
             </div>
         {% endif %}
     </div>
+</div>
 </div>
 <script type="text/javascript">
     function addRssFeed() {
