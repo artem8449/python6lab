@@ -140,11 +140,9 @@ def add_rss():
     if add_status:
         status_code = flask.Response(status=302)
         return status_code
-        return flask.redirect("/")
     else:
         status_code = flask.Response(status=208)
         return status_code
-
 
 
 @app.route('/feedupdate/<int:feed_id>', methods=["GET"])

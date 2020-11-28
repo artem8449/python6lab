@@ -95,11 +95,14 @@
 
         xhr.open("POST", '/feed', false);
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
         xhr.send(request);
 
+
         if(xhr.status == 208) {
-                alert("Ресур был добавлен ранее.");
+            alert("Ресур был добавлен ранее.");
         }
+
 
     }
 </script>
