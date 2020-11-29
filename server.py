@@ -44,7 +44,7 @@ class FeedItem(db.Model):
 def get_page_of_articles(feed_id, current_page):
     feed = Feed.query.get(feed_id)
 
-    items = FeedItem.query.filter(FeedItem.feed_id == feed_id).all()
+    items = FeedItem.query.filter(FeedItem.feed_id == feed_id).order_by(FeedItem.parsed_time.desc()).all()
     page_count = max(1, math.ceil(len(items) / PAGE_SIZE))
     if current_page > page_count:
         print("requested page does not exist")
